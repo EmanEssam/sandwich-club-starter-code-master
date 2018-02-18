@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtils {
-    private static List<String> alsoKnownAs = new ArrayList<>();
-    private static List<String> ingredients = new ArrayList<>();
 
     public static Sandwich parseSandwichJson(String json) {
         Sandwich sandwich = new Sandwich();
@@ -20,6 +18,7 @@ public class JsonUtils {
             JSONObject sandwichName = sandwichObject.getJSONObject("name");
             sandwich.setMainName(sandwichName.getString("mainName"));
             JSONArray alsoKnownArray = sandwichName.getJSONArray("alsoKnownAs");
+            List<String> alsoKnownAs = new ArrayList<>();
             for (int i = 0; i < alsoKnownArray.length(); i++) {
                 alsoKnownAs.add(alsoKnownArray.getString(i));
             }
@@ -28,6 +27,7 @@ public class JsonUtils {
             sandwich.setImage(sandwichObject.getString("image"));
             sandwich.setPlaceOfOrigin(sandwichObject.getString("placeOfOrigin"));
             JSONArray ingredientsArray = sandwichObject.getJSONArray("ingredients");
+            List<String> ingredients = new ArrayList<>();
             for (int i = 0; i < ingredientsArray.length(); i++) {
                 ingredients.add(ingredientsArray.getString(i));
             }
